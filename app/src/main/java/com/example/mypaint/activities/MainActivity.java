@@ -1,4 +1,4 @@
-package com.example.mypaint;
+package com.example.mypaint.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
+import com.example.mypaint.R;
 
 public class MainActivity extends AppCompatActivity {
 

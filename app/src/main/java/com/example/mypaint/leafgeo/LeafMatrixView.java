@@ -1,4 +1,4 @@
-package com.example.mypaint.leafdraw;
+package com.example.mypaint.leafgeo;
 
 import android.content.SharedPreferences;
 import android.util.DisplayMetrics;

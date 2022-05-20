@@ -1,6 +1,6 @@
-package com.example.mypaint.pointset;
+package com.example.mypaint.leafgeo;
 
-import com.example.mypaint.leafdraw.LeafMatrixView;
+import com.example.mypaint.leafgeo.LeafMatrixView;
 import com.example.mypaint.leafgeo.LineSegment;
 import com.example.mypaint.leafgeo.Point;
 
