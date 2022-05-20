@@ -38,7 +38,7 @@ public class LeafDrawer {
         canvas.drawLine(ln.A.x, ln.A.y, ln.B.x, ln.B.y, linePaint);
         drawPoint(ln.A);
         drawPoint(ln.B);
-        Log.d(TAG, "drawLine: " + ln.toString());
+//        Log.d(TAG, "drawLine: " + ln.toString());
     }
 
     public void drawLine(Point A, Point B){
@@ -48,7 +48,7 @@ public class LeafDrawer {
 
     public void drawPoint(Point pt){
         canvas.drawCircle(pt.x, pt.y, 5, pointPaint);
-        Log.d(TAG, "drawPoint: " + pt.toString());
+//        Log.d(TAG, "drawPoint: " + pt.toString());
     }
 
     public void drawLineSet(ArrayList<LineSegment> lns){

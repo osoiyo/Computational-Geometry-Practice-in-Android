@@ -6,13 +6,38 @@
     tools:context=".activities.Paint1Activity">
 
     <FrameLayout
+        android:id="@+id/paint1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         tools:ignore="MissingConstraints">
+
+
         <com.example.mypaint.view.DrawView
             android:id="@+id/draw_view_1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
 
+        <CheckBox
+            android:id="@+id/autoRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:checked="true"
+            android:layout_gravity="left|top"
+            android:hint="自动刷新" />
+        <CheckBox
+            android:id="@+id/clearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:hint="清空屏幕"
+            />
+        <CheckBox
+            android:id="@+id/refreshOnce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:hint="刷新一次"
+            />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

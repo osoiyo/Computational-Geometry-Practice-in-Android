@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.mypaint.leafdraw.LeafDrawer;
@@ -19,10 +20,11 @@ public class DrawView extends View {
     private LeafDrawer drawer = null;
     public ArrayList<LineSegment> lns;
     public ArrayList<Point> pts;
+    public LineSegment tempLn = null;
+    public boolean autoFresh = true;
 
     public DrawView(Context context, AttributeSet attrs){
         super(context, attrs);
-
         this.lns = new ArrayList<LineSegment>();
         this.pts = new ArrayList<Point>();
     }
@@ -34,7 +36,7 @@ public class DrawView extends View {
         //初始化画师
         if(drawer == null){
             drawer = new LeafDrawer(canvas);
-            Log.i(TAG, "onDraw: Init a LeafDrawer");
+            Log.d(TAG, "onDraw: Init a LeafDrawer");
         }
 
         //绘制
@@ -44,7 +46,13 @@ public class DrawView extends View {
         if(!pts.isEmpty()){
             drawer.drawPointSet(pts);
         }
+        if(tempLn != null){
+            drawer.drawLine(tempLn);
+        }
 
+        if(autoFresh){
+            postInvalidate();
+        }
     }
 
 }

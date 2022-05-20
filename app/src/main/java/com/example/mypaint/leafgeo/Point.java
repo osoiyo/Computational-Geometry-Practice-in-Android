@@ -54,4 +54,8 @@ public class Point extends Vector{
         return GeoDecider.dis_PointToSegment(this, A, B);
     }
 
+    public boolean isNear2D(Point pt2){
+        return (this.x == pt2.x && this.y == pt2.y);
+    }
+
 }
