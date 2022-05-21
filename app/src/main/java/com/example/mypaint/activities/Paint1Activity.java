@@ -45,6 +45,7 @@ public class Paint1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paint1);
+
         m_context = Paint1Activity.this;
 
         shift = MyUI.getStatusBarHeight(this);
@@ -55,6 +56,7 @@ public class Paint1Activity extends AppCompatActivity {
         CheckBox autoFresh = findViewById(R.id.autoRefresh);
         CheckBox clearAll = findViewById(R.id.clearAll);
         CheckBox refreshOnce = findViewById(R.id.refreshOnce);
+        autoFresh.setChecked(true);
 
         /*============= 按钮事件处理 ===========================*/
         autoFresh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

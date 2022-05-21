@@ -2,9 +2,11 @@ package com.example.mypaint.activities.tricks;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 public class MyUI {
+
     public static void hideStatusBar(Activity myActivity){
         View decorView = myActivity.getWindow().getDecorView();
         // Hide the status bar.
@@ -24,4 +26,12 @@ public class MyUI {
         else return 0;
     }
 
+    public static float[] getScreenSize(Activity myActivity){
+        float screenSize[] = new float[2];
+        DisplayMetrics dm = new DisplayMetrics();
+        myActivity.getWindowManager().getDefaultDisplay().getMetrics((dm));
+        screenSize[0] = dm.widthPixels;
+        screenSize[1] = dm.heightPixels;
+        return screenSize;
+    }
 }

@@ -9,11 +9,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPaint">
         <activity
+            android:name=".activities.Paint2Activity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="Paint2"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".activities.Paint1Activity"
             android:exported="true">
             <intent-filter>
-                <action android:name="Paint1"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="Paint1" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity

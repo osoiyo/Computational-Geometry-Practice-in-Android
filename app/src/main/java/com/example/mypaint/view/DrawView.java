@@ -4,11 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.mypaint.leafdraw.LeafDrawer;
-import com.example.mypaint.leafgeo.HouseTest;
 import com.example.mypaint.leafgeo.LineSegment;
 import com.example.mypaint.leafgeo.Point;
 
@@ -20,8 +18,10 @@ public class DrawView extends View {
     private LeafDrawer drawer = null;
     public ArrayList<LineSegment> lns;
     public ArrayList<Point> pts;
+    public ArrayList<LineSegment> lns3D;
     public LineSegment tempLn = null;
-    public boolean autoFresh = true;
+    public boolean autoFresh = false;
+    public float axisLength = 0;
 
     public DrawView(Context context, AttributeSet attrs){
         super(context, attrs);
@@ -41,7 +41,7 @@ public class DrawView extends View {
 
         //绘制
         if(!lns.isEmpty()){
-            drawer.drawLineSet(lns);
+            drawer.drawLineSet(lns, LeafDrawer.TYPE_2D);
         }
         if(!pts.isEmpty()){
             drawer.drawPointSet(pts);
@@ -49,7 +49,12 @@ public class DrawView extends View {
         if(tempLn != null){
             drawer.drawLine(tempLn);
         }
-
+        if(axisLength > 0){
+            drawer.drawAxis3D(axisLength);
+        }
+        if(!lns3D.isEmpty()){
+            drawer.drawLineSet(lns3D, LeafDrawer.TYPE_3D);
+        }
         if(autoFresh){
             postInvalidate();
         }

@@ -56,5 +56,11 @@ public class LineSegment implements GeoTransforms{
         Point B = this.B.observe(m);
         return new LineSegment(A, B);
     }
-    
+
+    public void mulMatrixSelf(Matrix4 m){
+        this.A = A.toVector4().mulMatrix(m).toVector().toPoint();
+        this.B = B.toVector4().mulMatrix(m).toVector().toPoint();
+    }
+
+
 }

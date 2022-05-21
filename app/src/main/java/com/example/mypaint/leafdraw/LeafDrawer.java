@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.mypaint.leafgeo.LeafMatrixView;
 import com.example.mypaint.leafgeo.LineSegment;
+import com.example.mypaint.leafgeo.Matrix4;
 import com.example.mypaint.leafgeo.Point;
 
 import java.util.ArrayList;
@@ -26,6 +27,12 @@ public class LeafDrawer {
         paint.setStyle(stroke);
         paint.setStrokeWidth(width);
         return paint;
+    }
+    private void setLinePaintColor(int color){
+        linePaint.setColor(color);
+    }
+    private void restoreLinePaintColor(){
+        linePaint.setColor(Color.BLACK);
     }
 
     public LeafDrawer(Canvas canvas){
@@ -51,9 +58,16 @@ public class LeafDrawer {
 //        Log.d(TAG, "drawPoint: " + pt.toString());
     }
 
-    public void drawLineSet(ArrayList<LineSegment> lns){
-        for (LineSegment ln: lns) {
-            drawLine(ln);
+    public void drawLineSet(ArrayList<LineSegment> lns, int TYPE_3D){
+        if(TYPE_3D != 1) {
+            for (LineSegment ln : lns) {
+                drawLine(ln);
+            }
+        }
+        else{
+            for (LineSegment ln : lns) {
+                drawLine(ln, TYPE_3D);
+            }
         }
     }
     public void drawPointSet(ArrayList<Point> pts){
@@ -62,25 +76,34 @@ public class LeafDrawer {
         }
     }
 
-
-    @Deprecated
     public void drawPoint(Point pt, int TYPE_3D){
         if(TYPE_3D == 1){
             pt = pt.observe(LeafMatrixView.mm);
         }
         drawPoint(pt);
     }
-    @Deprecated
     public void drawLine(LineSegment ln, int TYPE_3D){
         if (TYPE_3D == 1){
             ln = ln.observe(LeafMatrixView.mm);
         }
         drawLine(ln);
     }
-    @Deprecated
     public void drawLine(Point A, Point B, int TYPE_3D){
         LineSegment ln = new LineSegment(A, B);
         drawLine(ln, TYPE_3D);
     }
 
+    public void drawAxis3D(float length){
+        Point origin = new Point(0, 0, 0);
+        LineSegment axisX = new LineSegment(origin, new Point(length, 0, 0));
+        LineSegment axisY = new LineSegment(origin, new Point(0, length, 0));
+        LineSegment axisZ = new LineSegment(origin, new Point(0, 0, length));
+        setLinePaintColor(Color.RED);
+        drawLine(axisX, TYPE_3D);
+        setLinePaintColor(Color.GREEN);
+        drawLine(axisY, TYPE_3D);
+        setLinePaintColor(Color.BLUE);
+        drawLine(axisZ, TYPE_3D);
+        restoreLinePaintColor();
+    }
 }
