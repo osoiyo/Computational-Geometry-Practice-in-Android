@@ -3,6 +3,7 @@ package com.example.mypaint.leafdraw;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.util.Log;
 
 import com.example.mypaint.leafgeo.LeafMatrixView;
@@ -105,5 +106,9 @@ public class LeafDrawer {
         setLinePaintColor(Color.BLUE);
         drawLine(axisZ, TYPE_3D);
         restoreLinePaintColor();
+    }
+
+    public void clear(){
+        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
     }
 }

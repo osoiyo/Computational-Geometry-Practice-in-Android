@@ -27,6 +27,7 @@ public class DrawView extends View {
         super(context, attrs);
         this.lns = new ArrayList<LineSegment>();
         this.pts = new ArrayList<Point>();
+        this.lns3D = new ArrayList<>();
     }
 
     @Override
@@ -56,8 +57,12 @@ public class DrawView extends View {
             drawer.drawLineSet(lns3D, LeafDrawer.TYPE_3D);
         }
         if(autoFresh){
-            postInvalidate();
+            invalidate();
         }
+    }
+
+    public void clear(){
+        drawer.clear();
     }
 
 }

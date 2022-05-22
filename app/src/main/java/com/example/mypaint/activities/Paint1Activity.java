@@ -52,7 +52,10 @@ public class Paint1Activity extends AppCompatActivity {
 
         lns = new ArrayList<LineSegment>();
         pts = new ArrayList<Point>();
+
         this.myView = findViewById(R.id.draw_view_1);
+        myView.autoFresh = true;
+
         CheckBox autoFresh = findViewById(R.id.autoRefresh);
         CheckBox clearAll = findViewById(R.id.clearAll);
         CheckBox refreshOnce = findViewById(R.id.refreshOnce);
@@ -88,19 +91,33 @@ public class Paint1Activity extends AppCompatActivity {
             }
         });
 
+        Toast.makeText(this, "画线就行", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        myView.setVisibility(View.INVISIBLE);
         finish();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        myView.setVisibility(View.INVISIBLE);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myView.setVisibility(View.INVISIBLE);
     }
 
     public void updateView(DrawView view){
         view.lns = this.lns;
         view.pts = this.pts;
         view.tempLn = this.tempLn;
-        view.postInvalidate();
+        view.invalidate();
     }
 
 
@@ -140,7 +157,6 @@ public class Paint1Activity extends AppCompatActivity {
                     checkIntersected(A, B, C, D);
                     clearABCD();
                 }
-
                 updateView(myView);
                 break;
 
@@ -148,6 +164,7 @@ public class Paint1Activity extends AppCompatActivity {
         }
         return false;
     }
+
 
     public void clearABCD(){
         A = null;
@@ -158,6 +175,7 @@ public class Paint1Activity extends AppCompatActivity {
     public void clearAll(){
         this.lns.clear();
         this.pts.clear();
+        clearABCD();
         updateView(myView);
     }
     public void checkIntersected(Point A, Point B, Point C, Point D){

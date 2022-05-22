@@ -12,6 +12,7 @@
         android:layout_height="200dp"
         android:checked="true"
         android:hint="自动旋转"
+        android:visibility="invisible"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout

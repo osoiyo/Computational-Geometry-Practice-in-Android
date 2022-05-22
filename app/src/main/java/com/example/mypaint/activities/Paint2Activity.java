@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -34,6 +35,7 @@ public class Paint2Activity extends AppCompatActivity {
     private boolean autoRotate = true;
     private int refreshRate;
     private Matrix4 rotateY;
+    Thread rotateThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,6 @@ public class Paint2Activity extends AppCompatActivity {
         initMatrixView();
         MyHouse.initHouse();
         lns3D = new ArrayList<>();
-        Thread rotateThread;
 
         m_context = this;
         this.myView = findViewById(R.id.draw_view_2);
@@ -67,6 +68,9 @@ public class Paint2Activity extends AppCompatActivity {
             @Override
             public void run(){
                 while (autoRotate) {
+                    if (Thread.currentThread().isInterrupted()){
+                        break;
+                    }
                     //Matrix4 rotateY = MyHouse.genRotateHouseZ(angle);
                     temp = MyHouse.rotateHouse(temp, rotateY);
                     lns3D.clear();
@@ -80,8 +84,11 @@ public class Paint2Activity extends AppCompatActivity {
                     }
                 }
             }
+
         };
+
         rotateThread.start();
+
         Snackbar.make(m_context, myView, "刷新间隔：" + String.valueOf(refreshRate) + " 毫秒", Snackbar.LENGTH_SHORT).show();
 
         // ===================== 事件监听 ===========================
@@ -119,12 +126,31 @@ public class Paint2Activity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        //finish();
+        clearAll();
+        finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        clearAll();
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        clearAll();
     }
 
     public void initMatrixView(){
         float[] screenSize = MyUI.getScreenSize(this);
         LeafMatrixView.initDevice(screenSize[0], screenSize[1]);
         LeafMatrixView.initVOE();
+    }
+
+    public void clearAll(){
+        rotateThread.interrupt();
+        myView.setVisibility(View.INVISIBLE);
     }
 }
