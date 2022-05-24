@@ -12,8 +12,8 @@ import com.example.mypaint.leafgeo.Point;
 
 import java.util.ArrayList;
 
-public class DrawView extends View {
-    private static final String TAG = "DrawView";
+public class DrawView1_2 extends View {
+    private static final String TAG = "DrawView1_2";
 
     private LeafDrawer drawer = null;
     public ArrayList<LineSegment> lns;
@@ -23,7 +23,7 @@ public class DrawView extends View {
     public boolean autoFresh = false;
     public float axisLength = 0;
 
-    public DrawView(Context context, AttributeSet attrs){
+    public DrawView1_2(Context context, AttributeSet attrs){
         super(context, attrs);
         this.lns = new ArrayList<LineSegment>();
         this.pts = new ArrayList<Point>();

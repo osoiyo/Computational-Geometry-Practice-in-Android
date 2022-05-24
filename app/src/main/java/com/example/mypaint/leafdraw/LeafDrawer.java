@@ -5,11 +5,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.util.Log;
+import android.view.SurfaceHolder;
+import android.widget.ArrayAdapter;
+
+import androidx.annotation.ColorRes;
 
 import com.example.mypaint.leafgeo.LeafMatrixView;
 import com.example.mypaint.leafgeo.LineSegment;
 import com.example.mypaint.leafgeo.Matrix4;
 import com.example.mypaint.leafgeo.Point;
+import com.example.mypaint.leafgeo.Polygon;
+import com.example.mypaint.leafgeo.Triangle;
 
 import java.util.ArrayList;
 
@@ -18,9 +24,25 @@ public class LeafDrawer {
     public static final int TYPE_2D = 0;
     public static final int TYPE_3D = 1;
 
-    private final Paint linePaint;// = setPaint(Color.BLACK, Paint.Style.STROKE, 5);
-    private final Paint pointPaint;// = setPaint(Color.RED, Paint.Style.FILL, 2);
-    private final Canvas canvas;
+    private  Paint linePaint;// = setPaint(Color.BLACK, Paint.Style.STROKE, 5);
+    private  Paint pointPaint;// = setPaint(Color.RED, Paint.Style.FILL, 2);
+    private  Canvas canvas;
+    private SurfaceHolder surfaceHolder;
+
+    public Paint getLinePaint() {
+        return linePaint;
+    }
+
+    public Paint getPointPaint() {
+        return pointPaint;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+    public void setCanvas(Canvas canvas){
+        this.canvas = canvas;
+    }
 
     private Paint createPaint(int color,Paint.Style stroke, int width){
         Paint paint = new Paint();
@@ -29,11 +51,18 @@ public class LeafDrawer {
         paint.setStrokeWidth(width);
         return paint;
     }
-    private void setLinePaintColor(int color){
+    public void setLinePaintColor(int color){
         linePaint.setColor(color);
     }
-    private void restoreLinePaintColor(){
-        linePaint.setColor(Color.BLACK);
+    public void restoreLinePaintColor(){ linePaint.setColor(Color.BLACK); }
+    public void setPointPaintColor(int color){
+        pointPaint.setColor(color);
+    }
+    public void restorePointPaintColor(){ pointPaint.setColor(Color.RED); }
+
+    public LeafDrawer(){
+        this.linePaint = createPaint(Color.BLACK, Paint.Style.STROKE, 5);
+        this.pointPaint = createPaint(Color.RED, Paint.Style.FILL, 2);
     }
 
     public LeafDrawer(Canvas canvas){
@@ -94,6 +123,31 @@ public class LeafDrawer {
         drawLine(ln, TYPE_3D);
     }
 
+    public void drawPolygon(Polygon polygon, boolean needCenter){
+        if (polygon.getSize() < 2){
+            drawPoint(polygon.getVertex(0));
+        } else {
+            drawLineSet(polygon.toLineSet(), TYPE_2D);
+//            drawLine(polygon.getLastPoint(), polygon.getFirstPoint()); // Close Polygon
+            if (needCenter){
+                setPointPaintColor(Color.GREEN);
+                drawPoint(polygon.getCentroid());
+                restorePointPaintColor();
+            }
+        }
+    }
+
+    public void drawTriangle(Triangle triangle){
+        drawLineSet(triangle.toLineSet(), TYPE_2D);
+    }
+    public void drawTriangleSet(ArrayList<Triangle> triangles){
+        setLinePaintColor(Color.LTGRAY);
+        for (Triangle triangle : triangles) {
+            drawTriangle(triangle);
+        }
+        restoreLinePaintColor();
+    }
+
     public void drawAxis3D(float length){
         Point origin = new Point(0, 0, 0);
         LineSegment axisX = new LineSegment(origin, new Point(length, 0, 0));
@@ -111,4 +165,5 @@ public class LeafDrawer {
     public void clear(){
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
     }
+
 }

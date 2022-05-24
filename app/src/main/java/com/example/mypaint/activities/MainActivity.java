@@ -56,5 +56,6 @@ public class MainActivity extends AppCompatActivity {
         tasks = new ArrayList<>();
         tasks.add(new Task("1. 线段相交性的判别", "Paint1"));
         tasks.add(new Task("2. 三维房子绘制（线框）", "Paint2"));
+        tasks.add(new Task("3. 点在多边形内外的判别", "Paint3"));
     }
 }

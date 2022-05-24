@@ -3,18 +3,12 @@ package com.example.mypaint.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mypaint.R;
@@ -22,7 +16,7 @@ import com.example.mypaint.activities.tricks.MyUI;
 import com.example.mypaint.leafgeo.GeoDecider;
 import com.example.mypaint.leafgeo.LineSegment;
 import com.example.mypaint.leafgeo.Point;
-import com.example.mypaint.view.DrawView;
+import com.example.mypaint.view.DrawView1_2;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -37,7 +31,7 @@ public class Paint1Activity extends AppCompatActivity {
     public LineSegment ln1, ln2;
     public Point A, B, C, D;
     public float shift = 0;
-    public DrawView myView;
+    public DrawView1_2 myView;
     public Paint1Activity m_context;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -113,7 +107,7 @@ public class Paint1Activity extends AppCompatActivity {
         myView.setVisibility(View.INVISIBLE);
     }
 
-    public void updateView(DrawView view){
+    public void updateView(DrawView1_2 view){
         view.lns = this.lns;
         view.pts = this.pts;
         view.tempLn = this.tempLn;

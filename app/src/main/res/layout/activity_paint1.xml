@@ -12,7 +12,7 @@
         tools:ignore="MissingConstraints">
 
 
-        <com.example.mypaint.view.DrawView
+        <com.example.mypaint.view.DrawView1_2
             android:id="@+id/draw_view_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

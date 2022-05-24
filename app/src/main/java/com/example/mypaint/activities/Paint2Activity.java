@@ -3,13 +3,10 @@ package com.example.mypaint.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mypaint.R;
 import com.example.mypaint.activities.tricks.MyUI;
@@ -17,17 +14,16 @@ import com.example.mypaint.leafgeo.Matrix4;
 import com.example.mypaint.leafgeo.MyHouse;
 import com.example.mypaint.leafgeo.LeafMatrixView;
 import com.example.mypaint.leafgeo.LineSegment;
-import com.example.mypaint.view.DrawView;
+import com.example.mypaint.view.DrawView1_2;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Paint2Activity extends AppCompatActivity {
 
     private static final String TAG = "Paint2";
 
-    public DrawView myView;
+    public DrawView1_2 myView;
     public Paint2Activity m_context;
     public ArrayList<LineSegment> lns3D;
     ArrayList<LineSegment> temp;

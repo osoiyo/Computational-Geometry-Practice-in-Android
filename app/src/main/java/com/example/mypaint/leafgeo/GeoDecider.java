@@ -49,6 +49,7 @@ public class GeoDecider {
     // area22D
     // (Point, Line) || (Point, Point, Point)
     public static float area22D(Point pt, LineSegment ln) {
+        // (B - A) X (pt - A)
         return ln.toVector().crossMultiply2D(pt.subtract(ln.A));
     }
 

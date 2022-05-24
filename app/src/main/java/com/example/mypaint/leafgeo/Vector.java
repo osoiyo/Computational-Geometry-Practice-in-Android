@@ -91,7 +91,7 @@ public class Vector implements VectorOperations, GeoTransforms{
     @Override
     public float crossMultiply2D(Vector another){
         if (this.is3D || another.is3D){
-            System.out.println("3D Point Cannot Using crossMultiply2D!");
+//            System.out.println("3D Point Cannot Using crossMultiply2D!");
         }
         return x*another.y - y*another.x;
     }
