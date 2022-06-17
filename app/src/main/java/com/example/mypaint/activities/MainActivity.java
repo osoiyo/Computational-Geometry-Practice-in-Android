@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -12,8 +13,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.mypaint.R;
+import com.example.mypaint.model.About;
+
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Intent intent = new Intent("Paint1");
-//        startActivity(intent);
+        // 初始化数据库
+        SQLiteDatabase db = LitePal.getDatabase();
 
         initialize();
 
@@ -54,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize(){
         tasks = new ArrayList<>();
-        tasks.add(new Task("1. 线段相交性的判别", "Paint1"));
-        tasks.add(new Task("2. 三维房子绘制（线框）", "Paint2"));
-        tasks.add(new Task("3. 点在多边形内外的判别", "Paint3"));
+        tasks.add(new Task("1. 线段相交性的判别", "Paint1", R.drawable.img_1 ));
+        tasks.add(new Task("2. 三维房子绘制（线框）", "Paint2", R.drawable.img_2));
+        tasks.add(new Task("3. 点在多边形内外的判别", "Paint3", R.drawable.img_3));
+        tasks.add(new Task("4. ... ", "Paint3"));
     }
 }

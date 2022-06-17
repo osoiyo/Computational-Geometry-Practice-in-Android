@@ -10,10 +10,10 @@ public class Task {
         this.activityName = activityName;
     }
 
-    public Task(int imgId, String name, String activityName) {
-        this.imgId = imgId;
+    public Task(String name, String activityName, int imgId) {
         this.name = name;
         this.activityName = activityName;
+        this.imgId = imgId;
     }
 
     public String getName() {

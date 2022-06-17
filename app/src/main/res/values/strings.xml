@@ -3,4 +3,7 @@
     <string name="draw_mode" tools:ignore="ExtraTranslation">点击屏幕以添加顶点</string>
     <string name="point_mode" tools:ignore="ExtraTranslation">点击屏幕新增点，以颜色区分内/外</string>
     <string name="triangulation_mode" tools:ignore="ExtraTranslation">下图为三角剖分图形</string>
+    <string name="title_activity_cake_detail_host">cakeDetailHostActivity</string>
+    <string name="title_cake_list">cakes</string>
+    <string name="title_cake_detail">cake Detail</string>
 </resources>

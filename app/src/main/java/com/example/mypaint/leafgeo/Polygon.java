@@ -67,6 +67,16 @@ public class Polygon {
      * 1. Direction: 左拐、右拐、CCW or CW ?
      * 严格秃顶点是左拐的，多边形就逆时针。
      */
+    public Point getPolePoint(){
+        Point cur = getVertex(0);
+        int size = getSize();
+        for (Point point : vertexes) {
+            if(point.x < cur.x || (cur.x == point.x && cur.y > point.y)){
+                cur = point;    // 得到左下角的点
+            }
+        }
+        return cur;
+    }
 
     public boolean isCCW(){
         // 坐标系是反的！！！
@@ -80,15 +90,8 @@ public class Polygon {
         //             m = i;      // 相当于左下角的点
         //         }
         // }
-        
-        Point cur = getVertex(0);
-        int size = getSize();
-        for (Point point : vertexes) {
-            if(point.x < cur.x || (cur.x == point.x && cur.y > point.y)){
-                cur = point;    // 得到左下角的点
-            }
-        }
 
+        Point cur = getPolePoint();
         return (isVertexLeft(cur));
 
     }

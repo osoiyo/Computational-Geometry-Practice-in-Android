@@ -60,4 +60,8 @@ public class Point extends Vector{
         return (this.x == pt2.x && this.y == pt2.y);
     }
 
+    public boolean equal(Point another){
+        return this.x == another.x && this.y == another.y && this.z == another.z;
+    }
+
 }

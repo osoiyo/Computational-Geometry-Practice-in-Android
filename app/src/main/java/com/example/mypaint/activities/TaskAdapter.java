@@ -51,7 +51,7 @@ public class TaskAdapter extends ArrayAdapter {
         ImageView task_img = (ImageView) item_view.findViewById(R.id.task_img);
 
         task_title.setText(item.getName());
-        task_img.setImageResource(R.drawable.ic_launcher_background);
+        task_img.setImageResource(item.getImgId());
 
         return item_view;
     }
